@@ -3,7 +3,9 @@ const $$ = document.querySelectorAll.bind(document);
 const heading = $('header h2');
 const cdThumb = $('.cd-thumb');
 const audio = $('#audio');
-const cd = $('.cd');;
+const cd = $('.cd');
+const btnPlay = $('.btn-toggle-play');
+const player = $('.player');
 
 
 
@@ -92,11 +94,14 @@ const app = {
         document.onscroll = function () {
             const scrollTop = window.scrollY || document.documentElement.scrollTop
             const newCdwidth = cdWidth - scrollTop;
-
-
             cd.style.width = newCdwidth > 0 ? newCdwidth + 'px' : 0;
             // độ mờ
             cd.style.opacity = newCdwidth / cdWidth;
+        }
+        // xử lí play
+        btnPlay.onclick = function () {
+            audio.play();
+            player.classList.add('playing');
         }
     },
     defineProperties: function () {
