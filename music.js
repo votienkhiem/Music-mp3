@@ -1,9 +1,16 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
+const heading = $('header h2');
+const cdThumb = $('.cd-thumb');
+const audio = $('#audio');
+const cd = $('.cd');;
+
 
 
 // biến lưu danh sách bài hát và hình ảnh
 const app = {
+    currentIndex: 0,
+
     songs: [
         {
             name: 'Making My Way',
@@ -81,20 +88,43 @@ const app = {
     },
     handleEvents: function () {
         // scroll co dãn khung
-        const cd = $('.cd');
         const cdWidth = cd.offsetWidth;
         document.onscroll = function () {
             const scrollTop = window.scrollY || document.documentElement.scrollTop
             const newCdwidth = cdWidth - scrollTop;
 
-            console.log(newCdwidth)
+
             cd.style.width = newCdwidth > 0 ? newCdwidth + 'px' : 0;
             // độ mờ
             cd.style.opacity = newCdwidth / cdWidth;
         }
     },
+    defineProperties: function () {
+        Object.defineProperty(this, 'currentSong', {
+            get: function () {
+                return this.songs[this.currentIndex]
+            }
+        })
+    },
+    loadCurrentSong: function () {
+
+
+        heading.textContent = this.currentSong.name;
+        cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
+        audio.src = this.currentSong.path;
+
+        console.log(heading, cdThumb, audio)
+    },
     start: function () {
+        // Định nghĩa các thuộc tính
+        this.defineProperties();
+        // xử lí các sự kiện dom event
         this.handleEvents();
+
+        // tải thông tin bài hát đầu tiên
+        this.loadCurrentSong();
+
+        // render lại playlist
         this.render();
     }
 }
