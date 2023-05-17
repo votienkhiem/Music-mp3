@@ -6,7 +6,7 @@ const audio = $('#audio');
 const cd = $('.cd');
 const btnPlay = $('.btn-toggle-play');
 const player = $('.player');
-
+const progress = $('#progress')
 
 
 // biến lưu danh sách bài hát và hình ảnh
@@ -112,11 +112,19 @@ const app = {
         audio.onplay = function () {
             app.isPlaying = true;
             player.classList.add('playing');
+            
         }
         // Khi audio pause
         audio.onpause = function () {
-            app.isPlaying=false;
+            app.isPlaying = false;
             player.classList.remove("playing");
+        }
+        // tiến độ bài hát thay đổi
+        audio.ontimeupdate = function () {
+            if (audio.duration) {
+                const currentProgress = Math.floor((audio.currentTime / audio.duration)*100);
+                progress.value = currentProgress
+            }
         }
 
     },
@@ -128,13 +136,9 @@ const app = {
         })
     },
     loadCurrentSong: function () {
-
-
         heading.textContent = this.currentSong.name;
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
         audio.src = this.currentSong.path;
-
-        console.log(heading, cdThumb, audio)
     },
     start: function () {
         // Định nghĩa các thuộc tính

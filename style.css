@@ -1,3 +1,7 @@
+:root {
+    --primary-color: #ec1f55;
+    --text-color: #333;
+  }
 * {
     padding: 0;
     margin: 0;
@@ -37,7 +41,7 @@ html {
 
 .dashboard {
     padding: 16px 16px 14px;
-    background-color: rgb(198, 189, 195);
+    background-color: rgb(193, 141, 176);
     position: fixed;
     border-radius: 5px;
     top: 50px;
@@ -106,7 +110,6 @@ header {
 }
 
 .progress {
-
     width: 100%;
     -webkit-appearance: none;
     height: 6px;
@@ -115,16 +118,17 @@ header {
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
-}
-
-.progress::-webkit-slider-thumb {
+    border-radius: 3px
+  }
+  
+  .progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
     height: 6px;
     background-color: var(--primary-color);
     cursor: pointer;
-}
+  }
 
 /* playlist */
 .playlist {
