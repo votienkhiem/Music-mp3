@@ -90,6 +90,16 @@ const app = {
         $('.playlist').innerHTML = htmls.join('')
     },
     handleEvents: function () {
+        // CD quay
+        const cdthumbAnimate = cdThumb.animate([{
+
+            transform: "rotate(360deg)",
+        }], {
+            duration: 10000,
+            interations: Infinity,
+        })
+        cdthumbAnimate.pause();
+
         // scroll co dãn khung
         const cdWidth = cd.offsetWidth;
         document.onscroll = function () {
@@ -112,19 +122,27 @@ const app = {
         audio.onplay = function () {
             app.isPlaying = true;
             player.classList.add('playing');
-            
+            cdthumbAnimate.play();
+
         }
         // Khi audio pause
         audio.onpause = function () {
             app.isPlaying = false;
             player.classList.remove("playing");
+            cdthumbAnimate.pause();
         }
         // tiến độ bài hát thay đổi
         audio.ontimeupdate = function () {
             if (audio.duration) {
-                const currentProgress = Math.floor((audio.currentTime / audio.duration)*100);
+                const currentProgress = Math.floor((audio.currentTime / audio.duration) * 100);
                 progress.value = currentProgress
             }
+        }
+        // xử lý tua bài hát
+        progress.onchange = function (e) {
+            const seekTime = (audio.duration / 100) * e.target.value;
+            // console.log(seekTime)
+            audio.currentTime = seekTime;
         }
 
     },
