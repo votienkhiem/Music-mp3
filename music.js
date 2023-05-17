@@ -77,7 +77,7 @@ const app = {
         //  duyệt songs để lấy dữ liệu
         const htmls = this.songs.map(song => {
             return `<div class="song">
-            <div class="thumb"></div>
+            <div class="thumb" style="background-image: url('${song.image}')"></div>
             <div class="body">
               <h3 class="title">${song.name}</h3>
               <p class="author">${song.singer}</p>
@@ -96,7 +96,7 @@ const app = {
             transform: "rotate(360deg)",
         }], {
             duration: 10000,
-            interations: Infinity,
+            iterations: Infinity,
         })
         cdthumbAnimate.pause();
 
