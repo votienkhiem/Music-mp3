@@ -12,6 +12,7 @@ const player = $('.player');
 // biến lưu danh sách bài hát và hình ảnh
 const app = {
     currentIndex: 0,
+    isPlaying: false,
 
     songs: [
         {
@@ -100,9 +101,24 @@ const app = {
         }
         // xử lí play
         btnPlay.onclick = function () {
-            audio.play();
+
+            if (app.isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+        }
+        // Khi audio play
+        audio.onplay = function () {
+            app.isPlaying = true;
             player.classList.add('playing');
         }
+        // Khi audio pause
+        audio.onpause = function () {
+            app.isPlaying=false;
+            player.classList.remove("playing");
+        }
+
     },
     defineProperties: function () {
         Object.defineProperty(this, 'currentSong', {
