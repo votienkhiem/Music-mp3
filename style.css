@@ -19,16 +19,19 @@ body {
     margin-top: 10%;
 
 }
-.player .fa-play{
+
+.player .fa-play {
     display: none;
 }
+
 .player.playing .fa-pause {
     display: inline-block;
-  }
-  
-  .player.playing .fa-play {
+}
+
+.player.playing .fa-play {
     display: none;
-  }
+}
+
 body {
     background-image: url(https://images.unsplash.com/photo-1499415479124-43c32433a620?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80);
     width: 100%;
@@ -92,14 +95,15 @@ header {
     padding: 20px; */
 
     width: 100%;
-  -webkit-appearance: none;
-  height: 6px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
+    -webkit-appearance: none;
+    height: 6px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
 }
+
 .progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -107,7 +111,7 @@ header {
     height: 6px;
     background-color: var(--primary-color);
     cursor: pointer;
-  }
+}
 
 /* playlist */
 .playlist {
@@ -116,7 +120,7 @@ header {
     background-color: rgb(249, 241, 238);
     margin-top: 485px;
     border-radius: 5px;
- 
+
 }
 
 
@@ -128,7 +132,7 @@ header {
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-   
+
 
 }
 
@@ -145,7 +149,7 @@ header {
 .song .body {
     flex: 1;
     padding: 0 16px;
-    
+
 }
 
 .song .title {
@@ -162,17 +166,20 @@ header {
     padding: 16px 8px;
     color: #999;
     font-size: 18px;
-  
+
 }
+
 .control .btn {
     color: #c10404;
     padding: 18px;
     font-size: 18px;
-  }
-  .control .btn.active {
+}
+
+.control .btn.active {
     color: var(--primary-color);
-  }
-  .control .btn-toggle-play {
+}
+
+.control .btn-toggle-play {
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -182,4 +189,4 @@ header {
     align-items: center;
     justify-content: center;
     background-color: var(--primary-color);
-  }
+}
