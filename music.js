@@ -9,13 +9,16 @@ const player = $('.player');
 const progress = $('#progress')
 const nextBtnSong = $('.btn-next');
 const prevBtnSong = $('.btn-prev');
+const randomBtn = $('.btn-shuffle');
+const repeatBtn = $('.btn-repeat');
 
 
 // biến lưu danh sách bài hát và hình ảnh
 const app = {
     currentIndex: 0,
     isPlaying: false,
-
+    isRandom: false,
+    isRepeat: false,
     songs: [
         {
             name: 'Making My Way',
@@ -150,13 +153,45 @@ const app = {
         nextBtnSong.onclick = function () {
             // app là biến trỏ thẳng tới chỗ lưu bài hát
             // k dùng this.nextsong() vì nó sẽ hiểu this là thằng song
-            app.nextSong();
+            if (app.isRandom) {
+                app.playRandomSong();
+            }
+            else {
+                app.nextSong();
+            }
             audio.play();
+
         }
         // prev bai hat
-        prevBtnSong.onclick = function(){
-            app.prevSong();
+        prevBtnSong.onclick = function () {
+            if (app.isRandom) {
+                app.playRandomSong();
+            }
+            else {
+                app.prevSong();
+            }
+
             audio.play();
+        }
+        // random
+        randomBtn.onclick = function () {
+            app.isRandom = !app.isRandom
+            randomBtn.classList.toggle('active', app.isRandom)
+
+        }
+        // xử lí sau khi hết bài hát
+        audio.onended = function () {
+            if (app.isRepeat) {
+                audio.play
+            }
+            else {
+                nextBtnSong.click();
+            }
+        }
+        // xử lí repeat
+        repeatBtn.onclick = function () {
+            app.isRepeat = !app.isRepeat
+            repeatBtn.classList.toggle('active', app.isRepeat)
         }
 
     },
@@ -170,12 +205,21 @@ const app = {
     },
     prevSong: function () {
         this.currentIndex--;
-        console.log(this.currentIndex,this.songs.length-1)
-        if(this.currentIndex<0){
-            this.currentIndex = this.songs.length-1
+        console.log(this.currentIndex, this.songs.length - 1)
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.songs.length - 1
         }
         this.loadCurrentSong();
-        
+
+    },
+    playRandomSong: function () {
+        let newIndex
+        do {
+            newIndex = Math.floor(Math.random() * this.songs.length)
+        } while (newIndex === this.currentIndex) {
+            this.currentIndex = newIndex;
+            this.loadCurrentSong();
+        }
     },
     defineProperties: function () {
         Object.defineProperty(this, 'currentSong', {
