@@ -147,8 +147,16 @@ const app = {
             audio.currentTime = seekTime;
         }
         // next bai hat
-        nextBtnSong.onclick = function(){
-            app.nextSong(); 
+        nextBtnSong.onclick = function () {
+            // app là biến trỏ thẳng tới chỗ lưu bài hát
+            // k dùng this.nextsong() vì nó sẽ hiểu this là thằng song
+            app.nextSong();
+            audio.play();
+        }
+        // prev bai hat
+        prevBtnSong.onclick = function(){
+            app.prevSong();
+            audio.play();
         }
 
     },
@@ -159,6 +167,15 @@ const app = {
             this.currentIndex = 0;
         }
         this.loadCurrentSong();
+    },
+    prevSong: function () {
+        this.currentIndex--;
+        console.log(this.currentIndex,this.songs.length-1)
+        if(this.currentIndex<0){
+            this.currentIndex = this.songs.length-1
+        }
+        this.loadCurrentSong();
+        
     },
     defineProperties: function () {
         Object.defineProperty(this, 'currentSong', {
