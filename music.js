@@ -80,8 +80,8 @@ const app = {
     render: function () {
 
         //  duyệt songs để lấy dữ liệu
-        const htmls = this.songs.map(song => {
-            return `<div class="song">
+        const htmls = this.songs.map((song, index) => {
+            return `<div class="song ${index === this.currentIndex ? 'active' : ""}">
             <div class="thumb" style="background-image: url('${song.image}')"></div>
             <div class="body">
               <h3 class="title">${song.name}</h3>
@@ -153,6 +153,7 @@ const app = {
         nextBtnSong.onclick = function () {
             // app là biến trỏ thẳng tới chỗ lưu bài hát
             // k dùng this.nextsong() vì nó sẽ hiểu this là thằng song
+
             if (app.isRandom) {
                 app.playRandomSong();
             }
@@ -160,6 +161,7 @@ const app = {
                 app.nextSong();
             }
             audio.play();
+            app.render();
 
         }
         // prev bai hat
@@ -170,8 +172,8 @@ const app = {
             else {
                 app.prevSong();
             }
-
             audio.play();
+            app.render();
         }
         // random
         randomBtn.onclick = function () {
@@ -182,7 +184,7 @@ const app = {
         // xử lí sau khi hết bài hát
         audio.onended = function () {
             if (app.isRepeat) {
-                audio.play
+                audio.play();
             }
             else {
                 nextBtnSong.click();

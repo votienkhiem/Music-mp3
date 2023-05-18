@@ -211,6 +211,18 @@ div {
     font-size: 18px;
 
 }
-.song .active{
+
+.song.active {
     background-color: var(--primary-color)
+}
+/* đổi lại chữ màu trắng nếu nền màu đỏ */
+
+.song.active .title{
+    color: aliceblue;
+}
+.song.active .author{
+    color: aliceblue;
+} 
+.song.active .option{
+    color: aliceblue;
 }
