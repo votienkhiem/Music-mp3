@@ -162,6 +162,7 @@ const app = {
             }
             audio.play();
             app.render();
+            app.scrollToActiveSong();
 
         }
         // prev bai hat
@@ -174,6 +175,7 @@ const app = {
             }
             audio.play();
             app.render();
+            app.scrollToActiveSong();
         }
         // random
         randomBtn.onclick = function () {
@@ -213,6 +215,16 @@ const app = {
         }
         this.loadCurrentSong();
 
+    },
+    scrollToActiveSong: function () {
+        setTimeout(() => {
+            $('.song.active').scrollIntoView(
+                {
+                    behavior: 'smooth',
+                    block:'nearest',
+                }
+            )
+        }, 200);
     },
     playRandomSong: function () {
         let newIndex
