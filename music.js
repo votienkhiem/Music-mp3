@@ -7,6 +7,8 @@ const cd = $('.cd');
 const btnPlay = $('.btn-toggle-play');
 const player = $('.player');
 const progress = $('#progress')
+const nextBtnSong = $('.btn-next');
+const prevBtnSong = $('.btn-prev');
 
 
 // biến lưu danh sách bài hát và hình ảnh
@@ -144,7 +146,19 @@ const app = {
             // console.log(seekTime)
             audio.currentTime = seekTime;
         }
+        // next bai hat
+        nextBtnSong.onclick = function(){
+            app.nextSong(); 
+        }
 
+    },
+    // next song
+    nextSong: function () {
+        this.currentIndex++;
+        if (this.currentIndex >= this.songs.length) {
+            this.currentIndex = 0;
+        }
+        this.loadCurrentSong();
     },
     defineProperties: function () {
         Object.defineProperty(this, 'currentSong', {

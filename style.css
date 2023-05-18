@@ -1,7 +1,8 @@
 :root {
     --primary-color: #ec1f55;
     --text-color: #333;
-  }
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -21,7 +22,7 @@ html {
 
 .player {
     position: relative;
-    max-width: 480px;
+    max-width: 380px;
     margin: 0 auto;
     margin-top: 10%;
 
@@ -41,14 +42,24 @@ html {
 
 .dashboard {
     padding: 16px 16px 14px;
-    background-color: rgb(193, 141, 176);
+    background-image: linear-gradient(to left bottom, #f4d03f, #16a085);
+    /* #5ecde1,#2caee2 
+    #f1c9ec,#ab84c4
+    #f4a261,#ffc52d
+    #f1c9ec,#ecff9f
+    #2b5876,#4e4376
+    #0c97fa,#16e1f5
+    #f4d03f,#16a085
+    #49c5f6,#ff2aef*/
     position: fixed;
     border-radius: 5px;
     top: 50px;
     /* top: 0; */
     width: 100%;
-    max-width: 480px;
+    max-width: 380px;
     border-bottom: 1px solid #c32b2b;
+    opacity: 0.9;
+
 
 }
 
@@ -119,16 +130,16 @@ header {
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
     border-radius: 3px
-  }
-  
-  .progress::-webkit-slider-thumb {
+}
+
+.progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
     height: 6px;
     background-color: var(--primary-color);
     cursor: pointer;
-  }
+}
 
 /* playlist */
 .playlist {
@@ -143,14 +154,15 @@ body {
     background-image: url(https://images.unsplash.com/photo-1499415479124-43c32433a620?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80);
     width: 100%;
     background-size: cover;
-    animation: slide linear infinite 25s ;
+    animation: slide linear infinite 30s;
     /* transition-duration: .7s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);  */
 }
+
 @keyframes slide {
     50% {
-      background-position: 100%;
-  }
+        background-position: 100%;
+    }
 }
 
 div {
@@ -184,7 +196,7 @@ div {
 }
 
 .song .title {
-    font-size: 25px;
+    font-size: 20px;
     color: var(--text-color);
 }
 
