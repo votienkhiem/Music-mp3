@@ -226,3 +226,7 @@ div {
 .song.active .option{
     color: aliceblue;
 }
+/* bắt sự kiện nhấn */
+.song:active{
+opacity: 0.7;
+}

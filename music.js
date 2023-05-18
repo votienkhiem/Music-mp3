@@ -11,7 +11,10 @@ const nextBtnSong = $('.btn-next');
 const prevBtnSong = $('.btn-prev');
 const randomBtn = $('.btn-shuffle');
 const repeatBtn = $('.btn-repeat');
+const playlist = $('.playlist');
 
+// biến lưu local storage
+const PLAYER_STORAGE_KEY = "MUSIC_PLAYER";
 
 // biến lưu danh sách bài hát và hình ảnh
 const app = {
@@ -19,7 +22,9 @@ const app = {
     isPlaying: false,
     isRandom: false,
     isRepeat: false,
+    config: JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
     songs: [
+
         {
             name: 'Making My Way',
             singer: 'Sơn Tùng MTP',
@@ -77,11 +82,15 @@ const app = {
 
         },
     ],
+    setConfig: function (key, value) {
+        this.config[key] = value;
+        localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(app, this.config))
+    },
     render: function () {
 
         //  duyệt songs để lấy dữ liệu
         const htmls = this.songs.map((song, index) => {
-            return `<div class="song ${index === this.currentIndex ? 'active' : ""}">
+            return `<div class="song ${index === this.currentIndex ? 'active' : ""}" data-index="${index}">
             <div class="thumb" style="background-image: url('${song.image}')"></div>
             <div class="body">
               <h3 class="title">${song.name}</h3>
@@ -92,7 +101,7 @@ const app = {
             </div>
           </div>`
         })
-        $('.playlist').innerHTML = htmls.join('')
+        playlist.innerHTML = htmls.join('')
     },
     handleEvents: function () {
         // CD quay
@@ -106,6 +115,7 @@ const app = {
         cdthumbAnimate.pause();
 
         // scroll co dãn khung
+        const _this = this;
         const cdWidth = cd.offsetWidth;
         document.onscroll = function () {
             const scrollTop = window.scrollY || document.documentElement.scrollTop
@@ -179,8 +189,12 @@ const app = {
         }
         // random
         randomBtn.onclick = function () {
-            app.isRandom = !app.isRandom
-            randomBtn.classList.toggle('active', app.isRandom)
+            app.isRandom = !app.isRandom;
+            
+            // app.setConfig("isRandom", app.isRandom);
+
+            randomBtn.classList.toggle('active', app.isRandom);
+
 
         }
         // xử lí sau khi hết bài hát
@@ -194,8 +208,29 @@ const app = {
         }
         // xử lí repeat
         repeatBtn.onclick = function () {
-            app.isRepeat = !app.isRepeat
-            repeatBtn.classList.toggle('active', app.isRepeat)
+            app.isRepeat = !app.isRepeat;
+            // app.setConfig = ("isRepeat", app.isRepeat);
+            repeatBtn.classList.toggle('active', app.isRepeat);
+        }
+        // xử lí nâng cao nhấn vào playlist phát nhạc, lắng nghe click vào playlist
+        playlist.onclick = function (e) {
+            const songIndex = e.target.closest('.song:not(.active)');
+
+            if (songIndex || e.target.closest('.option')) {
+                // xử lý khi click vào song
+                if (songIndex) {
+                    app.currentIndex = Number(songIndex.dataset.index)
+                    app.loadCurrentSong();
+                    app.render();
+                    audio.play();
+                }
+                // xử lí khi click vào option
+                if (e.target.closest('.option')) {
+                    console.log(23123131)
+                }
+
+            }
+
         }
 
     },
@@ -216,12 +251,16 @@ const app = {
         this.loadCurrentSong();
 
     },
+    loadConfig: function () {
+        this.isRandom = this.config.isRandom
+        this.isRepeat = this.config.isRepeat
+    },
     scrollToActiveSong: function () {
         setTimeout(() => {
             $('.song.active').scrollIntoView(
                 {
                     behavior: 'smooth',
-                    block:'nearest',
+                    block: 'nearest',
                 }
             )
         }, 200);
@@ -248,6 +287,8 @@ const app = {
         audio.src = this.currentSong.path;
     },
     start: function () {
+        // gán lại nút repeat và shuffle
+        // this.loadConfig();
         // Định nghĩa các thuộc tính
         this.defineProperties();
         // xử lí các sự kiện dom event
@@ -258,6 +299,11 @@ const app = {
 
         // render lại playlist
         this.render();
+        // hiển thị lại
+        // randomBtn.classList.toggle('active', app.isRandom)
+        // repeatBtn.classList.toggle('active', app.isRepeat)
+
+
     }
 }
 // goi ham
