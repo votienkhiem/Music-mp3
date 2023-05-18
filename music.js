@@ -84,7 +84,11 @@ const app = {
     ],
     setConfig: function (key, value) {
         this.config[key] = value;
-        localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(app, this.config))
+        localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config));
+    },
+    loadConfig: function () {
+        this.isRandom = this.config.isRandom;
+        this.isRepeat = this.config.isRepeat;
     },
     render: function () {
 
@@ -190,10 +194,8 @@ const app = {
         // random
         randomBtn.onclick = function () {
             app.isRandom = !app.isRandom;
-            
-            // app.setConfig("isRandom", app.isRandom);
-
-            randomBtn.classList.toggle('active', app.isRandom);
+            app.setConfig("isRandom",app.isRandom);
+            randomBtn.classList.toggle("active", app.isRandom);
 
 
         }
@@ -209,8 +211,8 @@ const app = {
         // xử lí repeat
         repeatBtn.onclick = function () {
             app.isRepeat = !app.isRepeat;
-            // app.setConfig = ("isRepeat", app.isRepeat);
-            repeatBtn.classList.toggle('active', app.isRepeat);
+            app.setConfig("isRepeat",app.isRepeat);
+            repeatBtn.classList.toggle("active", app.isRepeat);
         }
         // xử lí nâng cao nhấn vào playlist phát nhạc, lắng nghe click vào playlist
         playlist.onclick = function (e) {
@@ -251,16 +253,12 @@ const app = {
         this.loadCurrentSong();
 
     },
-    loadConfig: function () {
-        this.isRandom = this.config.isRandom
-        this.isRepeat = this.config.isRepeat
-    },
     scrollToActiveSong: function () {
         setTimeout(() => {
             $('.song.active').scrollIntoView(
                 {
                     behavior: 'smooth',
-                    block: 'nearest',
+                    block: 'end',
                 }
             )
         }, 200);
@@ -288,7 +286,7 @@ const app = {
     },
     start: function () {
         // gán lại nút repeat và shuffle
-        // this.loadConfig();
+        this.loadConfig();
         // Định nghĩa các thuộc tính
         this.defineProperties();
         // xử lí các sự kiện dom event
@@ -300,8 +298,8 @@ const app = {
         // render lại playlist
         this.render();
         // hiển thị lại
-        // randomBtn.classList.toggle('active', app.isRandom)
-        // repeatBtn.classList.toggle('active', app.isRepeat)
+         randomBtn.classList.toggle("active", app.isRandom)
+         repeatBtn.classList.toggle("active", app.isRepeat)
 
 
     }
