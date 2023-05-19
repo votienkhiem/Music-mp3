@@ -22,9 +22,8 @@ html {
 
 .player {
     position: relative;
-    max-width: 380px;
-    margin: 0 auto;
-    margin-top: 10%;
+    width: 100vw;
+    height: 100vh;
 
 }
 
@@ -51,15 +50,18 @@ html {
     #0c97fa,#16e1f5
     #f4d03f,#16a085
     #49c5f6,#ff2aef*/
-    position: fixed;
+    /* position: fixed; */
+    /* position: relative; */
     border-radius: 5px;
-    top: 50px;
-    /* top: 0; */
     width: 100%;
     max-width: 380px;
     border-bottom: 1px solid #c32b2b;
     opacity: 0.9;
     box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
 }
 
@@ -145,18 +147,31 @@ header {
 .playlist {
     padding: 12px;
     background-color: rgb(249, 241, 238);
-    margin-top: 485px;
+    /* margin-top: 485px; */
     border-radius: 5px;
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 380px;
+    height: 100%;
+    max-height: 410px;
 
+    /* scroll */
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-padding: 20px;
+    scroll-behavior: smooth;
 }
 
 body {
     background-image: url(https://images.unsplash.com/photo-1499415479124-43c32433a620?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80);
-    width: 100%;
     background-size: cover;
-    animation: slide linear infinite 30s;
-    /* transition-duration: .7s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);  */
+    animation: slide linear infinite 20s;
+    background-repeat: no-repeat;
 }
 
 @keyframes slide {
@@ -165,9 +180,6 @@ body {
     }
 }
 
-div {
-    display: block;
-}
 
 .song {
     display: flex;
