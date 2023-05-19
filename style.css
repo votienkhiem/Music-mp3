@@ -59,7 +59,7 @@ html {
     max-width: 380px;
     border-bottom: 1px solid #c32b2b;
     opacity: 0.9;
-
+    box-sizing: border-box;
 
 }
 
@@ -215,21 +215,33 @@ div {
 .song.active {
     background-color: var(--primary-color)
 }
+
 /* đổi lại chữ màu trắng nếu nền màu đỏ */
 
-.song.active .title{
+.song.active .title {
     color: aliceblue;
 }
-.song.active .author{
-    color: aliceblue;
-} 
-.song.active .option{
+
+.song.active .author {
     color: aliceblue;
 }
+
+.song.active .option {
+    color: aliceblue;
+}
+
 /* bắt sự kiện nhấn */
-.song:active{
-opacity: 0.7;
+.song:active {
+    opacity: 0.7;
 }
-.listsong{
-    font-size: 25px;
+
+header h2 {
+    color: var(--primary-color);
+}
+
+.listsong {
+    box-sizing: border-box;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
 }

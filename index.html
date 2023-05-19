@@ -7,12 +7,14 @@
     <link rel="icon" href="assets/img/logo2.png" type="icon" />
     <link rel="stylesheet" href="fontawesome/css/all.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Playball&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Playball&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Music Player</title>
-    
   </head>
   <body>
     <div class="player">
@@ -20,6 +22,9 @@
       <div class="dashboard">
         <div class="listsong">
           <i class="fa-solid fa-list"></i>
+          <div class="settingsongs">
+            <i class="fa-solid fa-gear"></i>
+          </div>
         </div>
         <header>
           <h4>Now playing:</h4>
@@ -28,7 +33,10 @@
 
         <!-- CD -->
         <div class="cd">
-          <div class="cd-thumb" style="background-image: url(./assets/img/kl.jpg);"></div>
+          <div
+            class="cd-thumb"
+            style="background-image: url(./assets/img/kl.jpg)"
+          ></div>
         </div>
         <!-- control -->
         <div class="control">
@@ -48,7 +56,15 @@
           <div class="btn btn-shuffle">
             <i class="fa-solid fa-shuffle"></i>
           </div>
-          <input type="range" class="progress" id="progress" value="0" step="1" min="0" max="100" />
+          <input
+            type="range"
+            class="progress"
+            id="progress"
+            value="0"
+            step="1"
+            min="0"
+            max="100"
+          />
           <audio src="" id="audio"></audio>
         </div>
       </div>
@@ -68,5 +84,4 @@
     </div>
     <script src="music.js"></script>
   </body>
-
 </html>
