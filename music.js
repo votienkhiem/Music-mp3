@@ -12,6 +12,7 @@ const prevBtnSong = $('.btn-prev');
 const randomBtn = $('.btn-shuffle');
 const repeatBtn = $('.btn-repeat');
 const playlist = $('.playlist');
+const listsongs = $('.fa-list');
 
 // biến lưu local storage
 const PLAYER_STORAGE_KEY = "MUSIC_PLAYER";
@@ -22,6 +23,7 @@ const app = {
     isPlaying: false,
     isRandom: false,
     isRepeat: false,
+    isCheck: false,
     config: JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
     songs: [
 
@@ -194,7 +196,7 @@ const app = {
         // random
         randomBtn.onclick = function () {
             app.isRandom = !app.isRandom;
-            app.setConfig("isRandom",app.isRandom);
+            app.setConfig("isRandom", app.isRandom);
             randomBtn.classList.toggle("active", app.isRandom);
 
 
@@ -208,11 +210,11 @@ const app = {
                 nextBtnSong.click();
             }
         }
-        
+
         // xử lí repeat
         repeatBtn.onclick = function () {
             app.isRepeat = !app.isRepeat;
-            app.setConfig("isRepeat",app.isRepeat);
+            app.setConfig("isRepeat", app.isRepeat);
             repeatBtn.classList.toggle("active", app.isRepeat);
             repeatBtn.classList.toggle("fa-spin", app.isRepeat);
 
@@ -236,6 +238,17 @@ const app = {
 
             }
 
+        }
+        // hiển thị list bài hát
+        listsongs.onclick = function () {
+            
+            if (playlist.style.display === "none") {
+                playlist.style.display = "block"
+            }
+            else {
+
+                playlist.style.display = "none"
+            }
         }
 
     },
@@ -301,8 +314,8 @@ const app = {
         // render lại playlist
         this.render();
         // hiển thị lại
-         randomBtn.classList.toggle("active", app.isRandom)
-         repeatBtn.classList.toggle("active", app.isRepeat)
+        randomBtn.classList.toggle("active", app.isRandom)
+        repeatBtn.classList.toggle("active", app.isRepeat)
 
 
     }
