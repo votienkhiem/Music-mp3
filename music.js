@@ -64,7 +64,7 @@ const app = {
             name: 'Waiting For love',
             singer: 'Avicii',
             path: './assets/music/Avicii\ \ Waiting\ For\ Love.mp3',
-            image: './assets/img/kl.jpg',
+            image: './assets/img/cat.jpg',
 
         },
         {
@@ -208,11 +208,14 @@ const app = {
                 nextBtnSong.click();
             }
         }
+        
         // xử lí repeat
         repeatBtn.onclick = function () {
             app.isRepeat = !app.isRepeat;
             app.setConfig("isRepeat",app.isRepeat);
             repeatBtn.classList.toggle("active", app.isRepeat);
+            repeatBtn.classList.toggle("fa-spin", app.isRepeat);
+
         }
         // xử lí nâng cao nhấn vào playlist phát nhạc, lắng nghe click vào playlist
         playlist.onclick = function (e) {
