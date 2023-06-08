@@ -17,6 +17,7 @@ const listsongs = $('.fa-list');
 // biến lưu local storage
 const PLAYER_STORAGE_KEY = "MUSIC_PLAYER";
 
+
 // biến lưu danh sách bài hát và hình ảnh
 const app = {
     currentIndex: 0,
@@ -83,7 +84,27 @@ const app = {
             image: './assets/img/khunglong.jpg',
 
         },
+        {
+            name: 'Bài Ka tuổi trẻ',
+            singer: 'TamKa PKL',
+            path: 'assets/music/Bài\ Ka\ Tuổi\ Trẻ.mp3',
+            image: './assets/img/ech.jpg',
+
+        },
+        {
+            name: '4 mùa thương em',
+            singer: 'Lập Nguyên',
+            path: './assets/music/4\ mua\ thuong\ em.mp3',
+            image: './assets/img/eagle.jpg',
+        },
+        {
+            name: 'Hoa cỏ lau',
+            singer: '...',
+            path: './assets/music/hoa\ co\ lau.mp3',
+            image: './assets/img/heart.jpg',
+        },
     ],
+
     setConfig: function (key, value) {
         this.config[key] = value;
         localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config));
