@@ -181,7 +181,7 @@ const app = {
             }
         }
         // xử lý tua bài hát
-        progress.onchange = function (e) {
+        progress.oninput = function (e) {
             const seekTime = (audio.duration / 100) * e.target.value;
             // console.log(seekTime)
             audio.currentTime = seekTime;
