@@ -98,16 +98,16 @@ const app = {
             image: './assets/img/eagle.jpg',
         },
         {
-            name: 'Hoa cỏ lau',
-            singer: '...',
-            path: './assets/music/hoa\ co\ lau.mp3',
-            image: './assets/img/heart.jpg',
-        },
-        {
             name: 'Nothing on me',
             singer: 'Marie',
             path: 'assets/music/Nothin\ On\ Me\ \ Leah\ Marie\ Perez\ \ speed\ up\ .mp3',
             image: './assets/img/captain.jpg',
+        },
+        {
+            name: 'Hoa cỏ lau',
+            singer: '...',
+            path: 'assets/music/hoa\ co\ lau.mp3',
+            image: './assets/img/heart.jpg',
         },
     ],
 
