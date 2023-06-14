@@ -106,7 +106,7 @@ const app = {
         {
             name: 'Hoa cỏ lau',
             singer: '...',
-            path: './assets/music/Hoa\ Co\ Lau.mp3',
+            path: 'assets/music/Bong\ grass\ lau.mp3',
             image: './assets/img/heart.jpg',
         },
     ],
